@@ -1,17 +1,31 @@
 import { createBrowserRouter } from "react-router";
-import App from "../App";
 import RootLayout from "../layout/RootLayout";
-import Demo from "../Demo/Demo";
+import IndexPage from "../pages/dashboard/IndexPage/IndexPage";
+import CallLogs from "../pages/dashboard/callLogs/CallLogs";
+import Appointment from "../pages/dashboard/appointments/Appointment";
+import Settings from "../pages/dashboard/settings/Settings";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    children:[
+    children: [
       {
         index: true,
-        element: <Demo />,
-      }
-    ]
+        element: <IndexPage />,
+      },
+      {
+        path: "call-logs",
+        element: <CallLogs />,
+      },
+      {
+        path: "appointments",
+        element: <Appointment />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+    ],
   },
 ]);
