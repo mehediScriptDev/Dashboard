@@ -4,8 +4,6 @@ import { RiRobot2Line } from 'react-icons/ri';
 import { CalendarIcon, ClockIcon, PhoneIcon, XCircleIcon } from 'lucide-react';
 import { LuArrowRightLeft } from 'react-icons/lu';
 
-
-
 const IndexPage = () => {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -63,11 +61,8 @@ const IndexPage = () => {
         />
       </div>
 
-     
-
-      {/* Call Trends Chart */}
-      <div className="bg-stat-bg rounded-xl p-6 border border-border mb-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-stat-bg rounded-xl p-4 sm:p-6 border border-border mb-6">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
           <div>
             <h2 className="text-white text-lg font-semibold">Call Trends - This Week</h2>
             <p className="text-white/50 text-sm">Total: 472 calls</p>
@@ -80,7 +75,6 @@ const IndexPage = () => {
           </button>
         </div>
         
-        {/* Simple Chart */}
         <div className="relative h-64">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
@@ -89,12 +83,9 @@ const IndexPage = () => {
                 <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
               </linearGradient>
             </defs>
-            {/* Simple hardcoded chart path */}
             <polygon fill="url(#chartGradient)" points="0,100 0,55 16,25 33,45 50,50 66,65 83,40 100,60 100,100" />
             <polyline fill="none" stroke="#3B82F6" strokeWidth="0.5" points="0,55 16,25 33,45 50,50 66,65 83,40 100,60" />
           </svg>
-          
-          {/* Y-axis labels */}
           <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-white/40 text-xs py-2">
             <span>100</span>
             <span>75</span>
@@ -103,18 +94,14 @@ const IndexPage = () => {
             <span>0</span>
           </div>
         </div>
-        
-        {/* X-axis labels */}
-        <div className="flex justify-between text-white/40 text-sm mt-2 px-8">
+        <div className="flex justify-between text-white/40 text-xs sm:text-sm mt-2 px-4 sm:px-8">
           {days.map((day, i) => (
             <span key={i}>{day}</span>
           ))}
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 ">
-        {/* Recent Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <div className="bg-stat-bg rounded-xl p-4 sm:p-6 border border-border">
           <h2 className="text-white text-xl font-semibold mb-6">Recent Activity</h2>
           <div>
@@ -141,8 +128,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        {/* Top Repair Requests */}
-        <div className="bg-stat-bg rounded-xl p-6 border border-border">
+        <div className="bg-stat-bg rounded-xl p-4 sm:p-6 border border-border">
           <h2 className="text-white text-lg font-semibold mb-6">Top Repair Requests</h2>
           <ProgressBar label="Screen Repair" value={175} maxValue={250} color="bg-gradient-to-r from-[#2B7FFF] to-[#00B8DB]" />
           <ProgressBar label="Battery Replacement" value={89} maxValue={200} color="bg-gradient-to-r from-[#2B7FFF] to-[#00B8DB]" />
