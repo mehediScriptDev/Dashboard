@@ -1,4 +1,9 @@
+import { PhoneIcon } from 'lucide-react';
 import React, { useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import { IoIosCheckmarkCircleOutline, IoMdArrowDropdown } from 'react-icons/io';
+import { IoDocumentTextOutline } from 'react-icons/io5';
+import { LuClock } from 'react-icons/lu';
 
 // Sample call data
 const callsData = [
@@ -73,10 +78,10 @@ const CallLogs = () => {
 
   const getStatusBadge = (status, statusColor) => {
     const colorMap = {
-      'AI Resolved': 'bg-green-500/20 text-green-400 border-green-500/30',
-      'Warm Transfer': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-      'Appointment': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-      'Dropped': 'bg-red-500/20 text-red-400 border-red-500/30',
+      'AI Resolved': 'bg-gradient-to-tr from-[#00C950]/20 to-[#00BC7D]/20 text-[#05DF72] border-[#00C950]/30',
+      'Warm Transfer': 'bg-gradient-to-tr from-[#FF6900]/20 to-[#FB2C36]/20 text-[#FF8904] border-[#FF6900]/30',
+      'Appointment': 'bg-gradient-to-tr from-[#2B7FFF]/20 to-[#00B8DB]/20 text-[#51A2FF] border-[#2B7FFF]/30',
+      'Dropped': 'bg-gradient-to-tr from-[#FF1500]/20 to-[#FB2C36]/20 text-[#FF0404] border-[#FF6900]/30',
     };
     return colorMap[status] || 'bg-gray-500/20 text-gray-400 border-gray-500/30';
   };
@@ -92,53 +97,47 @@ const CallLogs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#070d1f] p-4 sm:p-6">
+    <div className="min-h-screen bgColorPrimary p-4 sm:p-6 lg:p-8">
       {/* Search and Filters */}
       <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6">
         <div className="flex-1 min-w-0 sm:min-w-50">
           <div className="relative">
-            <svg className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+            
+            <CiSearch className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-[#90A1B9]" />
             <input
               type="text"
               placeholder="Search by phone number, issue type..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0d1a2d] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-blue-500"
+              className="w-full bg-stat-bg border border-border text-sm rounded-lg pl-10 pr-4 py-3 text-[62748E] placeholder:text-white/40 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
         <div className="flex flex-wrap gap-2 sm:gap-3">
-          <button className="bg-[#0d1a2d] border border-white/10 text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
+          <button className="bg-stat-bg border border-border text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
             All Type
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            
+            <IoMdArrowDropdown className='w-4 h-4' />
           </button>
-          <button className="bg-[#0d1a2d] border border-white/10 text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
+          <button className="bg-stat-bg border border-border text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
             All Issues
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <IoMdArrowDropdown className='w-4 h-4' />
           </button>
-          <button className="bg-[#0d1a2d] border border-white/10 text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
+          <button className="bg-stat-bg border border-border text-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-lg flex items-center gap-2 text-sm">
             Today
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <IoMdArrowDropdown className='w-4 h-4' />
           </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
         {/* Call List */}
-        <div className="bg-[#0d1a2d] rounded-xl border border-white/5 overflow-hidden">
-          <div className="p-4 border-b border-white/5">
-            <h2 className="text-white font-semibold">Call List</h2>
+        <div className="bg-stat-bg rounded-xl border border-border overflow-hidden lg:w-[40%] lg:h-fit">
+          <div className="p-4 border-b border-border">
+            <h2 className="text-white font-medium">Call List</h2>
           </div>
-          <div className="divide-y divide-white/5 max-h-[60vh] lg:max-h-none overflow-y-auto">
+          <div className="divide-y divide-border  lg:max-h-none overflow-y-auto">
             {callsData.map((call) => (
               <div
                 key={call.id}
@@ -147,34 +146,31 @@ const CallLogs = () => {
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
+                    <div className="w-10 h-10 bg-linear-to-tr from-[#2B7FFF] to-[#00B8DB] rounded-xl flex items-center justify-center">
+                    
+                      <PhoneIcon className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <p className="text-white font-medium">{call.phoneNumber}</p>
-                      <p className="text-white/40 text-sm">{call.date} • {call.time}</p>
+                      <p className="text-[#90A1B9] text-[12px]">{call.date} • {call.time}</p>
                     </div>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-xs border ${getStatusBadge(call.status)}`}>
+                  <span className={`px-3 py-1 rounded-[10px] text-xs border ${getStatusBadge(call.status)}`}>
                     {call.status}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 ml-13 pl-13">
-                  <div className="flex items-center gap-1 text-white/50 text-sm">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                <div className="flex items-start gap-4 pt-2">
+                  <div className="flex items-center gap-1 text-[#90A1B9] text-sm">
+                    
+                    <LuClock className='w-4 h-4' />
                     {call.duration}
                   </div>
-                  <div className="flex items-center gap-1 text-white/50 text-sm">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                  <div className="flex items-center gap-1 text-[#90A1B9] text-sm">
+                    
+                     <IoIosCheckmarkCircleOutline className='w-4 h-4' />
                     {call.outcome}
                   </div>
-                  <span className={`px-2 py-0.5 rounded text-xs ${getIssueBadge(call.issueType)}`}>
+                  <span className={`px-2 py-0.5 rounded text-xs bg-[#2B7FFF]/20 text-[#2B7FFF]`}>
                     {call.issueType}
                   </span>
                 </div>
@@ -184,40 +180,46 @@ const CallLogs = () => {
         </div>
 
         {/* Call Details */}
-        <div className="bg-[#0d1a2d] rounded-xl border border-white/5 overflow-hidden">
-          <div className="p-4 border-b border-white/5">
+        <div className="bg-stat-bg rounded-xl border border-border overflow-hidden lg:w-[60%]">
+          <div className="p-4 border-b border-border">
             <h2 className="text-white font-semibold">Call Details</h2>
           </div>
           
           {selectedCall && (
             <div className="p-4">
               {/* Call Info Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <p className="text-white/50 text-sm mb-1">Phone Number</p>
+              <div className="flex flex-col gap-4 mb-6">
+                <div className='grid grid-cols-2 gap-4  justify-between'>
+                  <div>
+                  <p className="text-[#90A1B9] text-sm mb-1">Phone Number</p>
                   <p className="text-white">+1 (555) 123-4567</p>
                 </div>
                 <div>
-                  <p className="text-white/50 text-sm mb-1">Duration</p>
+                  <p className="text-[#90A1B9] text-sm mb-1">Duration</p>
                   <p className="text-white">4:32</p>
                 </div>
-                <div>
-                  <p className="text-white/50 text-sm mb-1">Date & Time</p>
+                </div>
+                <div className='grid grid-cols-2 gap-4  justify-between'>
+                  <div>
+                  <p className="text-[#90A1B9] text-sm mb-1">Date & Time</p>
                   <p className="text-white">2025-12-16 10:45 AM</p>
                 </div>
                 <div>
-                  <p className="text-white/50 text-sm mb-1">Issue Type</p>
+                  <p className="text-[#90A1B9] text-sm mb-1">Issue Type</p>
                   <p className="text-white">Screen</p>
                 </div>
-                <div>
-                  <p className="text-white/50 text-sm mb-1">Call Type</p>
-                  <span className="px-3 py-1 rounded-full text-xs bg-green-500/20 text-green-400 border border-green-500/30">
+                </div>
+                <div className='grid grid-cols-1 space-y-4'>
+                  <div>
+                  <p className="text-[#90A1B9] text-sm mb-1">Call Type</p>
+                  <span className="px-3 py-1 rounded-[10px] text-xs bg-linear-to-tr from-[#00C950]/20 to-[#00BC7D]/20 text-[#05DF72] border border-[#00C950]/30">
                     AI Resolved
                   </span>
                 </div>
                 <div>
-                  <p className="text-white/50 text-sm mb-1">Outcome</p>
+                  <p className="text-[#90A1B9] text-sm mb-1">Outcome</p>
                   <p className="text-white">Quote provided</p>
+                </div>
                 </div>
               </div>
 
@@ -231,19 +233,17 @@ const CallLogs = () => {
 
               {/* Conversation Transcript */}
               <div>
-                <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                  </svg>
+                <h3 className="text-white font-normal text-base tracking-wide mb-4 flex items-center gap-2">
+                  <IoDocumentTextOutline className='w-5 h-5 text-[#51A2FF]' />
                   Conversation Transcript
                 </h3>
-                <div className="space-y-4 max-h-64 overflow-y-auto">
+                <div className="space-y-4 bg-[#1D293D] rounded-[14px] p-6 overflow-y-auto">
                   {transcriptMessages.map((msg, index) => (
                     <div key={index}>
-                      <p className={`text-sm font-medium mb-1 ${msg.isAI ? 'text-red-400' : 'text-cyan-400'}`}>
+                      <p className={`text-sm font-normal tracking-wide mb-1 ${msg.isAI ? 'text-[#05DF72]' : 'text-[#51A2FF]'}`}>
                         {msg.speaker}:
                       </p>
-                      <p className="text-white/80 text-sm">{msg.message}</p>
+                      <p className="text-white/80 text-xs leading-relaxed">{msg.message}</p>
                     </div>
                   ))}
                 </div>
