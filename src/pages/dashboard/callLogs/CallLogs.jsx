@@ -100,7 +100,7 @@ const CallLogs = () => {
     <div className="min-h-screen bgColorPrimary p-4 sm:p-6 lg:p-8">
       {/* Search and Filters */}
       <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6">
-        <div className="flex-1 min-w-0 sm:min-w-50">
+        <div className="flex-1">
           <div className="relative">
             
             <CiSearch className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-[#90A1B9]" />
