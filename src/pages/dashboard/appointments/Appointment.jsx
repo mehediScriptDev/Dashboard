@@ -1,6 +1,6 @@
-import { CalendarIcon, CircleCheckBig, ClockArrowDown } from 'lucide-react';
+import { CalendarIcon, CircleCheckBig, ClockArrowDown, Copy } from 'lucide-react';
 import React, { useState } from 'react';
-import { AppointmentStatCard } from "../../../Components/ui";
+import { AppointmentStatCard, Btn } from "../../../Components/ui";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 // Sample appointments data
@@ -63,15 +63,12 @@ const Appointment = () => {
           <div className="flex-1 bg-[#070d1f] border border-[#00FF88]/20 rounded-lg px-4 py-3">
             <p className="text-white/80 text-sm font-normal truncate">{bookingLink}</p>
           </div>
-          <button
-            onClick={handleCopyLink}
-            className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 transition-colors border border-white/10 whitespace-nowrap"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-            </svg>
-            {copied ? 'Copied!' : 'Copy Link'}
-          </button>
+          <div onClick={handleCopyLink} className="cursor-pointer">
+            <Btn className="w-auto! py-3!">
+               <Copy className='w-5 h-5' />
+              {copied ? 'Copied!' : 'Copy Link'}
+            </Btn>
+          </div>
         </div>
       </div>
 
