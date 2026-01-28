@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router';
 import Avatar from '../Components/ui/Avatar';
 import { FiX } from 'react-icons/fi';
+import { RiMenu3Line } from 'react-icons/ri';
 
 const NavbarLayout = ({ onMenuClick }) => {
   const location = useLocation();
@@ -29,8 +30,7 @@ const NavbarLayout = ({ onMenuClick }) => {
           onClick={onMenuClick}
           className="lg:hidden text-white/60 hover:text-white transition-colors p-2 -ml-2"
         >
-        
-          <FiX className="w-6 h-6" />
+          <RiMenu3Line className="w-6 h-6" />
         </button>
         <h1 className='text-white text-xl sm:text-2xl lg:text-[32px] font-normal tracking-wide'>{getPageTitle()}</h1>
       </div>

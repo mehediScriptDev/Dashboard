@@ -5,6 +5,7 @@ import { IoCallOutline } from "react-icons/io5";
 import { PiCalendarBlank } from "react-icons/pi";
 import { TbSettings } from "react-icons/tb";
 import { IoIosLogIn } from 'react-icons/io';
+import { FiX } from 'react-icons/fi';
 
 const Sidebar = ({ onClose }) => {
     return (
@@ -14,9 +15,7 @@ const Sidebar = ({ onClose }) => {
                 onClick={onClose}
                 className="absolute top-4 right-4 lg:hidden text-white/60 hover:text-white"
             >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <FiX className="w-6 h-6" />
             </button>
             
             {/* logo */}
@@ -69,7 +68,7 @@ const Sidebar = ({ onClose }) => {
                             onClick={onClose}
                             className={({isActive}) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? 'bg-white/10 shadow-lg ring-1 ring-white/20' : 'hover:bg-white/5'}`}
                         >
-                            <span className="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center">
+                            <span className=" rounded-lg flex items-center justify-center">
                                 <TbSettings className='w-5 h-5' />
                             </span>
                             Settings
