@@ -1,5 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+* {
+  font-family: 'Inter', sans-serif;
+}
 
 @theme{
     --color-primary: #111B3C;
@@ -9,6 +13,11 @@
     --color-border: #152c5d;
 }
 
-body{
-    @apply bg-linear-to-b from-[#152354] to-primary;
+
+
+.bgColorPrimary{
+    @apply bg-linear-to-br from-[#020618] via-[#162456] to-[#0F172B];
+}
+.statGrid{
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4
 }

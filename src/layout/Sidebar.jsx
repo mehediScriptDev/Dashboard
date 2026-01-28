@@ -5,18 +5,18 @@ import { IoCallOutline } from "react-icons/io5";
 import { PiCalendarBlank } from "react-icons/pi";
 import { TbSettings } from "react-icons/tb";
 import { IoIosLogIn } from 'react-icons/io';
+import { FiX } from 'react-icons/fi';
+import Btn from '../Components/ui/Btn';
 
 const Sidebar = ({ onClose }) => {
     return (
-        <div className='w-56 bg-stat-bg h-screen relative border-r border-border'>
+        <div className='w-56 bg-[#0F172B] h-screen relative border-r border-border z-50'>
             {/* Close button for mobile */}
             <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 lg:hidden text-white/60 hover:text-white"
+                className="absolute top-4 right-4 lg:hidden text-white/60 hover:text-white z-10"
             >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <FiX className="w-6 h-6" />
             </button>
             
             {/* logo */}
@@ -31,48 +31,72 @@ const Sidebar = ({ onClose }) => {
                         <NavLink 
                             to={'/'} 
                             onClick={onClose}
-                            className={({isActive}) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? 'bg-white/10 shadow-lg ring-1 ring-white/20' : 'hover:bg-white/5'}`}
                         >
-                            <span className=" rounded-lg flex items-center justify-center">
-                                <AiOutlineHome className='w-5 h-5' />
-                            </span>
-                            Dashboard Overview
+                            {({isActive}) => isActive ? (
+                                <Btn>
+                                    <AiOutlineHome className='w-5 h-5' />
+                                    Dashboard Overview
+                                </Btn>
+                            ) : (
+                                <span className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-white/5">
+                                    <AiOutlineHome className='w-5 h-5' />
+                                    Dashboard Overview
+                                </span>
+                            )}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink 
                             to={'/call-logs'} 
                             onClick={onClose}
-                            className={({isActive}) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? 'bg-white/10 shadow-lg ring-1 ring-white/20' : 'hover:bg-white/5'}`}
                         >
-                            <span className=" rounded-lg flex items-center justify-center">
-                                <IoCallOutline className='w-5 h-5' />
-                            </span>
-                            Call Logs
+                            {({isActive}) => isActive ? (
+                                <Btn>
+                                    <IoCallOutline className='w-5 h-5' />
+                                    Call Logs
+                                </Btn>
+                            ) : (
+                                <span className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-white/5">
+                                    <IoCallOutline className='w-5 h-5' />
+                                    Call Logs
+                                </span>
+                            )}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink 
                             to={'/appointments'} 
                             onClick={onClose}
-                            className={({isActive}) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? 'bg-white/10 shadow-lg ring-1 ring-white/20' : 'hover:bg-white/5'}`}
                         >
-                            <span className=" rounded-lg flex items-center justify-center">
-                                <PiCalendarBlank className='w-5 h-5' />
-                            </span>
-                            Appointments
+                            {({isActive}) => isActive ? (
+                                <Btn>
+                                    <PiCalendarBlank className='w-5 h-5' />
+                                    Appointments
+                                </Btn>
+                            ) : (
+                                <span className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-white/5">
+                                    <PiCalendarBlank className='w-5 h-5' />
+                                    Appointments
+                                </span>
+                            )}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink 
                             to={'/settings'} 
                             onClick={onClose}
-                            className={({isActive}) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? 'bg-white/10 shadow-lg ring-1 ring-white/20' : 'hover:bg-white/5'}`}
                         >
-                            <span className="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center">
-                                <TbSettings className='w-5 h-5' />
-                            </span>
-                            Settings
+                            {({isActive}) => isActive ? (
+                                <Btn>
+                                    <TbSettings className='w-5 h-5' />
+                                    Settings
+                                </Btn>
+                            ) : (
+                                <span className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-white/5">
+                                    <TbSettings className='w-5 h-5' />
+                                    Settings
+                                </span>
+                            )}
                         </NavLink>
                     </li>
                 </ul>
