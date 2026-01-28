@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatCard, ActivityItem, ProgressBar } from "../../../Components/ui";
 import { RiRobot2Line } from 'react-icons/ri';
 
 // Icons
@@ -38,74 +39,11 @@ const ClockIcon = () => (
   </svg>
 );
 
-// Stats Card Component
-const StatCard = ({ icon, iconBg, label, value, change, changeColor }) => (
-  <div className="bg-stat-bg rounded-xl p-4 border border-border">
-    <div className="flex justify-between items-start">
-      <div>
-        <p className="text-[#90A1B9] text-sm mb-1">{label}</p>
-        <p className="text-white text-3xl font-medium">{value}</p>
-        <p className={`text-sm mt-1 ${changeColor}`}>{change}</p>
-      </div>
-      <div className={`w-12 h-12 ${iconBg} rounded-[14px] flex items-center justify-center text-white`}>
-        <span className=''>{icon}</span>
-      </div>
-    </div>
-  </div>
-);
-
-// Recent Activity Item
-const ActivityItem = ({ color, title, time }) => (
-  <div className="bg-[#1D293D80] rounded-xl p-4 mb-3 last:mb-0">
-    <div className="flex items-start gap-3">
-      <div className={`w-2.5 h-2.5 rounded-full mt-1.5 ${color}`}></div>
-      <div className="flex-1">
-        <p className="text-white text-sm font-medium">{title}</p>
-        <p className="text-[#7A8BA4] text-xs mt-1">{time}</p>
-      </div>
-    </div>
-  </div>
-);
-
-// Progress Bar Component
-const ProgressBar = ({ label, value, maxValue, color }) => {
-  const percentage = (value / maxValue) * 100;
-  return (
-    <div className="mb-4">
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-white/80 text-sm">{label}</span>
-        <span className="text-white/60 text-sm">{value} requests</span>
-      </div>
-      <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-        <div className={`h-full ${color} rounded-full`} style={{ width: `${percentage}%` }}></div>
-      </div>
-    </div>
-  );
-};
-
 const IndexPage = () => {
-  // Chart data points for the area chart
-  const chartData = [
-    { day: 'Mon', value: 45 },
-    { day: 'Tue', value: 75 },
-    { day: 'Wed', value: 55 },
-    { day: 'Thu', value: 50 },
-    { day: 'Fri', value: 35 },
-    { day: 'Sat', value: 60 },
-    { day: 'Sun', value: 40 },
-  ];
-
-  const maxValue = Math.max(...chartData.map(d => d.value));
-  const points = chartData.map((d, i) => {
-    const x = (i / (chartData.length - 1)) * 100;
-    const y = 100 - (d.value / maxValue) * 80;
-    return `${x},${y}`;
-  }).join(' ');
-
-  const areaPoints = `0,100 ${points} 100,100`;
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   return (
-    <div className="min-h-screen bg-linear-to-tl from-stat-bg to-primary  p-4 sm:p-6">
+    <div className="min-h-screen bgColorPrimary p-4 sm:p-6 lg:p-8">
       {/* Stats Cards - Row 1 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
         <StatCard
@@ -175,7 +113,7 @@ const IndexPage = () => {
           </button>
         </div>
         
-        {/* SVG Chart */}
+        {/* Simple Chart */}
         <div className="relative h-64">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
@@ -184,8 +122,9 @@ const IndexPage = () => {
                 <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <polygon fill="url(#chartGradient)" points={areaPoints} />
-            <polyline fill="none" stroke="#3B82F6" strokeWidth="0.5" points={points} />
+            {/* Simple hardcoded chart path */}
+            <polygon fill="url(#chartGradient)" points="0,100 0,55 16,25 33,45 50,50 66,65 83,40 100,60 100,100" />
+            <polyline fill="none" stroke="#3B82F6" strokeWidth="0.5" points="0,55 16,25 33,45 50,50 66,65 83,40 100,60" />
           </svg>
           
           {/* Y-axis labels */}
@@ -200,8 +139,8 @@ const IndexPage = () => {
         
         {/* X-axis labels */}
         <div className="flex justify-between text-white/40 text-sm mt-2 px-8">
-          {chartData.map((d, i) => (
-            <span key={i}>{d.day}</span>
+          {days.map((day, i) => (
+            <span key={i}>{day}</span>
           ))}
         </div>
       </div>

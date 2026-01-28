@@ -9,6 +9,8 @@
     --color-border: #152c5d;
 }
 
-body{
-    @apply bg-linear-to-b from-[#152354] to-primary;
+
+
+.bgColorPrimary{
+    @apply bg-linear-to-br from-[#020618] via-[#162456] to-[#0F172B];
 }
